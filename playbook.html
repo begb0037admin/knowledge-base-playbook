@@ -3,16 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <title>AI Knowledge Base Playbook</title>
 <style>
-/* ── Tokens ── */
+/* -- Tokens -- */
 :root {
-  --navy:        #0C1733;
+  --navy:        #002147;
   --navy-mid:    #1A2E5A;
   --accent:      #4A7CF6;
   --accent-soft: #EEF3FE;
-  --bg:          #FAFAF9;
-  --bg-alt:      #F3F2EF;
+  --bg:          #f5f7fb;
+  --bg-alt:      #eef1f8;
   --surface:     #FFFFFF;
   --border:      #E4E2DC;
   --text:        #1A1918;
@@ -53,12 +55,12 @@
   }
 }
 :root[data-theme="light"] {
-  --navy:        #0C1733;
+  --navy:        #002147;
   --navy-mid:    #1A2E5A;
   --accent:      #4A7CF6;
   --accent-soft: #EEF3FE;
-  --bg:          #FAFAF9;
-  --bg-alt:      #F3F2EF;
+  --bg:          #f5f7fb;
+  --bg-alt:      #eef1f8;
   --surface:     #FFFFFF;
   --border:      #E4E2DC;
   --text:        #1A1918;
@@ -95,11 +97,11 @@
   --danger-bg:   #1C0A0A;
 }
 
-/* ── Reset ── */
+/* -- Reset -- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-size: 15px;
   line-height: 1.7;
   color: var(--text);
@@ -108,9 +110,9 @@ body {
   min-height: 100vh;
 }
 
-/* ── Sidebar ── */
+/* -- Sidebar -- */
 .sidebar {
-  width: 220px;
+  width: 340px;
   flex-shrink: 0;
   background: var(--navy);
   position: sticky;
@@ -121,22 +123,56 @@ body {
   flex-direction: column;
 }
 .sidebar-header {
-  padding: 24px 20px 16px;
   border-bottom: 1px solid rgba(255,255,255,.1);
 }
 .sidebar-logo {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 13px;
-  font-weight: 700;
-  color: rgba(255,255,255,.95);
-  letter-spacing: .02em;
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.sidebar-crest {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.sidebar-brand-text {
+  display: inline-flex;
+  flex-direction: column;
+}
+.sb-univ-of {
+  font-size: 9.5px;
+  font-weight: 400;
+  letter-spacing: 0.30em;
   text-transform: uppercase;
-  line-height: 1.3;
+  color: rgba(255,255,255,0.70);
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.sb-oxford {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #ffffff;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+.sb-app-name {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-top: 4px;
+  line-height: 1.4;
 }
 .sidebar-sub {
   font-size: 11px;
   color: rgba(255,255,255,.45);
-  margin-top: 4px;
+  padding: 8px 20px 12px;
   letter-spacing: .04em;
   text-transform: uppercase;
 }
@@ -177,7 +213,7 @@ body {
   line-height: 1.5;
 }
 
-/* ── Main content ── */
+/* -- Main content -- */
 .main {
   flex: 1;
   min-width: 0;
@@ -185,9 +221,9 @@ body {
   max-width: 860px;
 }
 
-/* ── Typography ── */
+/* -- Typography -- */
 h1, h2, h3, h4 {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   color: var(--text);
   text-wrap: balance;
   line-height: 1.25;
@@ -211,7 +247,7 @@ h1, h2, h3, h4 {
   font-size: 17px;
   color: var(--text-2);
   font-weight: 400;
-  font-family: system-ui, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   max-width: 56ch;
   margin-bottom: 24px;
 }
@@ -248,14 +284,14 @@ h3 {
   font-size: 16px;
   font-weight: 700;
   margin: 28px 0 10px;
-  font-family: system-ui, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   letter-spacing: -.01em;
 }
 h4 {
   font-size: 14px;
   font-weight: 600;
   margin: 20px 0 8px;
-  font-family: system-ui, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   color: var(--text-2);
 }
 p { max-width: 68ch; margin-bottom: 14px; }
@@ -264,7 +300,7 @@ strong { font-weight: 600; color: var(--text); }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-/* ── Code ── */
+/* -- Code -- */
 code {
   font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
   font-size: .855em;
@@ -286,7 +322,7 @@ pre {
 }
 pre code { background: none; padding: 0; font-size: inherit; border-radius: 0; }
 
-/* ── Callouts ── */
+/* -- Callouts -- */
 .callout {
   border-radius: var(--r);
   padding: 14px 16px;
@@ -309,7 +345,7 @@ pre code { background: none; padding: 0; font-size: inherit; border-radius: 0; }
 .callout.danger .callout-body, .callout.danger .callout-body p { color: var(--danger); }
 .callout.success .callout-body, .callout.success .callout-body p { color: var(--success); }
 
-/* ── Tables ── */
+/* -- Tables -- */
 .table-wrap { overflow-x: auto; margin: 16px 0 20px; }
 table { width: 100%; border-collapse: collapse; font-size: 14px; }
 th {
@@ -332,13 +368,13 @@ td {
 tr:last-child td { border-bottom: none; }
 tbody tr:hover { background: var(--bg-alt); }
 
-/* ── Lists ── */
+/* -- Lists -- */
 ul, ol { padding-left: 20px; margin-bottom: 14px; max-width: 66ch; }
 li { margin-bottom: 6px; line-height: 1.6; }
 li:last-child { margin-bottom: 0; }
 ul ul, ol ol, ul ol, ol ul { margin-top: 6px; margin-bottom: 6px; }
 
-/* ── Step cards ── */
+/* -- Step cards -- */
 .steps { display: flex; flex-direction: column; gap: 0; margin: 18px 0 24px; }
 .step {
   display: flex;
@@ -365,7 +401,7 @@ ul ul, ol ol, ul ol, ol ul { margin-top: 6px; margin-bottom: 6px; }
 .step-content h4 { margin: 0 0 4px; color: var(--text); }
 .step-content p { margin-bottom: 6px; }
 
-/* ── Architecture diagram ── */
+/* -- Architecture diagram -- */
 .arch-diagram {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -405,11 +441,11 @@ ul ul, ol ol, ul ol, ol ul { margin-top: 6px; margin-bottom: 6px; }
   flex-shrink: 0;
 }
 
-/* ── Lessons table colours ── */
+/* -- Lessons table colours -- */
 .lesson-row-pain td:first-child { color: var(--danger); font-weight: 600; }
 .lesson-row-fix td:first-child { color: var(--success); font-weight: 600; }
 
-/* ── Stat strip ── */
+/* -- Stat strip -- */
 .stats {
   display: flex;
   gap: 0;
@@ -425,7 +461,7 @@ ul ul, ol ol, ul ol, ol ul { margin-top: 6px; margin-bottom: 6px; }
 }
 .stat:last-child { border-right: none; }
 .stat-value {
-  font-family: Georgia, serif;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-size: 28px;
   font-weight: 700;
   color: var(--text);
@@ -435,7 +471,7 @@ ul ul, ol ol, ul ol, ol ul { margin-top: 6px; margin-bottom: 6px; }
 }
 .stat-label { font-size: 12px; color: var(--text-2); }
 
-/* ── Badge ── */
+/* -- Badge -- */
 .badge {
   display: inline-block;
   font-size: 11px;
@@ -449,10 +485,10 @@ ul ul, ol ol, ul ol, ol ul { margin-top: 6px; margin-bottom: 6px; }
 .badge-red   { background: var(--danger-bg); color: var(--danger); }
 .badge-blue  { background: var(--accent-soft); color: var(--accent); }
 
-/* ── Divider ── */
+/* -- Divider -- */
 hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
 
-/* ── Mobile ── */
+/* -- Mobile -- */
 @media (max-width: 800px) {
   body { flex-direction: column; }
   .sidebar { width: 100%; height: auto; position: relative; }
@@ -471,10 +507,17 @@ hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
 </head>
 <body>
 
-<!-- ── SIDEBAR ── -->
+<!-- -- SIDEBAR -- -->
 <nav class="sidebar" aria-label="Document navigation">
   <div class="sidebar-header">
-    <div class="sidebar-logo">AI Knowledge Base<br>Playbook</div>
+    <div class="sidebar-logo">
+      <img class="sidebar-crest" src="images/oxford-crest.jpg" alt="University of Oxford crest">
+      <div class="sidebar-brand-text">
+        <span class="sb-univ-of">University of</span>
+        <span class="sb-oxford">Oxford</span>
+        <span class="sb-app-name">Knowledge Base Playbook</span>
+      </div>
+    </div>
     <div class="sidebar-sub">Replication Guide · v1.0</div>
   </div>
   <div class="sidebar-nav">
@@ -509,29 +552,29 @@ hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
     </div>
   </div>
   <div class="sidebar-footer">
-    University of Oxford<br>HR Systems — July 2026
+    University of Oxford<br>HR Systems - July 2026
   </div>
 </nav>
 
-<!-- ── MAIN ── -->
+<!-- -- MAIN -- -->
 <main class="main">
 
   <!-- Header -->
   <div class="doc-eyebrow">Process Documentation</div>
   <h1 class="doc-title">AI Knowledge Base Playbook</h1>
-  <p class="doc-subtitle">A complete record of how an AI-powered, voice-enabled knowledge base was built for HR — and everything needed to replicate it elsewhere.</p>
+  <p class="doc-subtitle">A complete record of how an AI-powered, voice-enabled knowledge base was built for HR - and everything needed to replicate it elsewhere.</p>
   <div class="doc-meta">
-    <span>📅 July 2026</span>
-    <span>🏛 University of Oxford, HR Systems</span>
-    <span>📄 v1.0 — first edition</span>
+    <span>July 2026</span>
+    <span>University of Oxford, HR Systems</span>
+    <span>v1.0 - first edition</span>
   </div>
 
-  <!-- ── INTRO ── -->
+  <!-- -- INTRO -- -->
   <section id="intro">
     <div class="section-eyebrow">Section 1</div>
     <h2 class="section-title">Introduction</h2>
-    <p>This document records — in full — how an AI-assisted knowledge base was designed, built, debugged, and populated for the HR Functional Analysis team at the University of Oxford. It exists so that the lessons learned over many months of iteration are not lost, and so that the same system can be stood up for other departments or organisations without repeating the same pain.</p>
-    <p>The system lets a staff member ask a plain-English question — typed or spoken — and receive a precise, cited, step-by-step answer drawn from 2,515 source documents across three data sources: the Access Group PeopleXD help centres, 567 PDFs (SharePoint library and Salesforce-hosted step-by-step guides), and internally authored guides. It requires no training, no searching through folders, and no specialist knowledge of where information lives.</p>
+    <p>This document records - in full - how an AI-assisted knowledge base was designed, built, debugged, and populated for the HR Functional Analysis team at the University of Oxford. It exists so that the lessons learned over many months of iteration are not lost, and so that the same system can be stood up for other departments or organisations without repeating the same pain.</p>
+    <p>The system lets a staff member ask a plain-English question - typed or spoken - and receive a precise, cited, step-by-step answer drawn from 2,515 source documents across three data sources: the Access Group PeopleXD help centres, 567 PDFs (SharePoint library and Salesforce-hosted step-by-step guides), and internally authored guides. It requires no training, no searching through folders, and no specialist knowledge of where information lives.</p>
 
     <div class="stats">
       <div class="stat">
@@ -554,11 +597,11 @@ hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
 
     <div class="callout success">
       <div class="callout-icon">✓</div>
-      <div class="callout-body"><p><strong>Primary objective achieved</strong>The system is live at <code>kb.lelitte.co.uk</code>. A staff member can ask any HR systems question in plain English and receive a cited answer in seconds — without knowing how any underlying system is structured.</p></div>
+      <div class="callout-body"><p><strong>Primary objective achieved</strong>The system is live at <code>kb.lelitte.co.uk</code>. A staff member can ask any HR systems question in plain English and receive a cited answer in seconds - without knowing how any underlying system is structured.</p></div>
     </div>
   </section>
 
-  <!-- ── WHAT WAS BUILT ── -->
+  <!-- -- WHAT WAS BUILT -- -->
   <section id="what-was-built">
     <div class="section-eyebrow">Section 2</div>
     <h2 class="section-title">What Was Built</h2>
@@ -566,7 +609,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
     <p>The knowledge base is a static single-page web application. It has no server, no database, and no ongoing infrastructure costs beyond a Cloudflare Worker (free tier). Everything is hosted on GitHub Pages.</p>
 
     <h3>The user experience</h3>
-    <p>A staff member opens the site. There is one input: a question box. They type (or speak) a question in plain English — "How do I process a leaver in PeopleXD?" or "What are the steps to configure pension by appointment?" The system retrieves the most relevant documents using BM25 search, then passes those documents to Claude (via a Cloudflare Worker) to generate a step-by-step answer with direct source links. There is also a voice agent mode (Talk button) for fully spoken interaction.</p>
+    <p>A staff member opens the site. There is one input: a question box. They type (or speak) a question in plain English - "How do I process a leaver in PeopleXD?" or "What are the steps to configure pension by appointment?" The system retrieves the most relevant documents using BM25 search, then passes those documents to Claude (via a Cloudflare Worker) to generate a step-by-step answer with direct source links. There is also a voice agent mode (Talk button) for fully spoken interaction.</p>
 
     <h3>The knowledge base content</h3>
     <div class="table-wrap">
@@ -577,14 +620,14 @@ hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
         <tbody>
           <tr><td>Access Group PeopleXD Help Centres (web articles)</td><td>~1,948</td><td>Full-text HTML articles, deep-scraped</td><td>GitHub Actions scraper (public, no login)</td></tr>
           <tr><td>PeopleXD Step-by-Step Guide PDFs (11 modules)</td><td>307</td><td>Salesforce-hosted PDFs, authenticated download</td><td>GitHub Actions scraper (login required)</td></tr>
-          <tr><td>SharePoint — How To Guides</td><td>209</td><td>PDF documents, full text extracted</td><td>Manual export + workflow</td></tr>
-          <tr><td>SharePoint — Change Management</td><td>51</td><td>PDF documents, full text extracted</td><td>Manual export + workflow</td></tr>
+          <tr><td>SharePoint - How To Guides</td><td>209</td><td>PDF documents, full text extracted</td><td>Manual export + workflow</td></tr>
+          <tr><td>SharePoint - Change Management</td><td>51</td><td>PDF documents, full text extracted</td><td>Manual export + workflow</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <!-- ── ARCHITECTURE ── -->
+  <!-- -- ARCHITECTURE -- -->
   <section id="architecture">
     <div class="section-eyebrow">Section 3</div>
     <h2 class="section-title">Architecture</h2>
@@ -632,7 +675,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
         <thead><tr><th>Component</th><th>File</th><th>Responsibility</th></tr></thead>
         <tbody>
           <tr><td><strong>Scraper</strong></td><td><code>scrapers/access_group_scraper.py</code></td><td>Playwright browser automation. Logs in to the Access Group portal, walks all help-centre articles, downloads PDFs, and harvests Salesforce-hosted guide PDFs via browser download interception.</td></tr>
-          <tr><td><strong>Index builder</strong></td><td><code>scrapers/build_index.py</code></td><td>Merges all PDF sources — SharePoint exports, collection PDFs, guide PDFs — into <code>data/kb.json</code> (cards) and <code>data/kb-index.json</code> (BM25 chunks).</td></tr>
+          <tr><td><strong>Index builder</strong></td><td><code>scrapers/build_index.py</code></td><td>Merges all PDF sources - SharePoint exports, collection PDFs, guide PDFs - into <code>data/kb.json</code> (cards) and <code>data/kb-index.json</code> (BM25 chunks).</td></tr>
           <tr><td><strong>Dashboard</strong></td><td><code>index.html</code></td><td>Single-file static SPA. Loads the BM25 index, retrieves top documents client-side, calls the Cloudflare Worker with context + question, renders cited answer. Voice input via Scribe v2. Talk button via ElevenLabs Conversational AI.</td></tr>
           <tr><td><strong>AI proxy</strong></td><td><code>worker/worker.js</code></td><td>Cloudflare Worker. Holds API secrets server-side. Routes <code>/</code> to Claude (Anthropic API), <code>/tts</code> to ElevenLabs, <code>/stt</code> to Scribe v2.</td></tr>
           <tr><td><strong>Workflow</strong></td><td><code>.github/workflows/scrape-help-centres.yml</code></td><td>GitHub Actions. Triggers the scraper, runs the index builder, and commits the result. Diagnostic mode for safe testing without touching production data.</td></tr>
@@ -642,37 +685,37 @@ hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
     </div>
   </section>
 
-  <!-- ── TECHNOLOGY STACK ── -->
+  <!-- -- TECHNOLOGY STACK -- -->
   <section id="stack">
     <div class="section-eyebrow">Section 4</div>
     <h2 class="section-title">Technology Stack</h2>
-    <p>Every technology choice here was made for a reason — and some choices were made after other approaches were tried and failed. The "why" is recorded alongside the "what."</p>
+    <p>Every technology choice here was made for a reason - and some choices were made after other approaches were tried and failed. The "why" is recorded alongside the "what."</p>
 
     <div class="table-wrap">
       <table>
         <thead><tr><th>Technology</th><th>Role</th><th>Why this choice</th></tr></thead>
         <tbody>
-          <tr><td><strong>Playwright (Python)</strong></td><td>Web scraping</td><td>The scraping target (Access Group / Intercom) requires JavaScript rendering and authenticated sessions. Playwright provides a real browser context, handles login flows, and — critically — can intercept native file download events (<code>page.expect_download()</code>), which was essential for Salesforce-hosted PDFs.</td></tr>
+          <tr><td><strong>Playwright (Python)</strong></td><td>Web scraping</td><td>The scraping target (Access Group / Intercom) requires JavaScript rendering and authenticated sessions. Playwright provides a real browser context, handles login flows, and - critically - can intercept native file download events (<code>page.expect_download()</code>), which was essential for Salesforce-hosted PDFs.</td></tr>
           <tr><td><strong>GitHub Actions</strong></td><td>Scrape + build pipeline</td><td>Zero infrastructure to maintain. Self-hosted runner has access to the organisation's network and can run long jobs (up to 300 min). The <code>workflow_dispatch</code> trigger allows manual runs with parameters. Results committed directly to the repo.</td></tr>
-          <tr><td><strong>GitHub Pages</strong></td><td>Static hosting</td><td>Free, reliable, no configuration. The knowledge base is a static site — all retrieval is client-side. Pages serves the PDFs, the index files, and the HTML.</td></tr>
-          <tr><td><strong>BM25 (client-side)</strong></td><td>Document retrieval</td><td>Runs entirely in the browser — no server, no API call, no cost. Fast enough for 2,500 documents. Provides explainable keyword-match retrieval that is passed as context to Claude.</td></tr>
+          <tr><td><strong>GitHub Pages</strong></td><td>Static hosting</td><td>Free, reliable, no configuration. The knowledge base is a static site - all retrieval is client-side. Pages serves the PDFs, the index files, and the HTML.</td></tr>
+          <tr><td><strong>BM25 (client-side)</strong></td><td>Document retrieval</td><td>Runs entirely in the browser - no server, no API call, no cost. Fast enough for 2,500 documents. Provides explainable keyword-match retrieval that is passed as context to Claude.</td></tr>
           <tr><td><strong>Claude (Anthropic API)</strong></td><td>Answer generation</td><td>Given retrieved document context, Claude generates a step-by-step cited answer. Model: Claude Haiku 4.5 (speed + cost at this document volume). Accessed via Cloudflare Worker to keep the API key server-side.</td></tr>
           <tr><td><strong>Cloudflare Workers</strong></td><td>API proxy</td><td>Free tier. Holds API secrets. Enforces CORS to lock the worker to the specific KB domain. Routes to Claude, ElevenLabs, and Scribe v2.</td></tr>
           <tr><td><strong>ElevenLabs</strong></td><td>Text-to-speech + voice agent</td><td>High-quality speech synthesis for the Listen feature. Conversational AI for the Talk (voice agent) mode.</td></tr>
-          <tr><td><strong>Scribe v2</strong></td><td>Speech-to-text</td><td>Mic input transcription — high accuracy for technical HRIS vocabulary.</td></tr>
+          <tr><td><strong>Scribe v2</strong></td><td>Speech-to-text</td><td>Mic input transcription - high accuracy for technical HRIS vocabulary.</td></tr>
           <tr><td><strong>pypdf</strong></td><td>PDF text extraction</td><td>Used in <code>build_index.py</code> to extract text from downloaded PDFs for BM25 indexing.</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <!-- ── DATA SOURCES ── -->
+  <!-- -- DATA SOURCES -- -->
   <section id="data-sources">
     <div class="section-eyebrow">Section 5</div>
     <h2 class="section-title">Data Sources</h2>
 
     <h3>Access Group Help Centres</h3>
-    <p>The Access Group (PeopleXD vendor) publishes help documentation across eight module-specific help centres, each hosted on Intercom. Articles are rendered as JavaScript-heavy pages — standard HTTP fetching returns an empty shell. Playwright navigates each article, finds the PDF download link where one exists, falls back to rendering the page to PDF when not, and saves to per-module subfolders.</p>
+    <p>The Access Group (PeopleXD vendor) publishes help documentation across eight module-specific help centres, each hosted on Intercom. Articles are rendered as JavaScript-heavy pages - standard HTTP fetching returns an empty shell. Playwright navigates each article, finds the PDF download link where one exists, falls back to rendering the page to PDF when not, and saves to per-module subfolders.</p>
 
     <h3>PeopleXD Module Guide PDFs</h3>
     <p>Separate from the help centres, Access Group publishes detailed step-by-step user guides indexed in 11 "guide index" articles. Each guide is hosted on Salesforce (<code>accessgroup.my.salesforce.com</code>) behind a file viewer page. These require an authenticated Salesforce Community session to download. See <a href="#journey">Section 9</a> for the full story of how this was solved.</p>
@@ -681,19 +724,19 @@ hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
     <p>Internal "How To Guides" and Change Management documents, exported from SharePoint as a zip file. The <code>extract_sharepoint.py</code> script unpacks these into the <code>library/</code> folder and the index builder picks them up. This is a manual process: re-export the zip, replace the release asset, trigger the indexing workflow.</p>
 
     <div class="callout info">
-      <div class="callout-icon">ℹ</div>
-      <div class="callout-body"><p><strong>Adapting for other departments</strong> The SharePoint export method works for any team whose documents live in SharePoint. The help-centre scraper is specific to Access Group / Intercom — a different HRIS vendor will need different selectors. The guide PDF approach (Salesforce viewer + <code>expect_download()</code>) is general and will work for any Salesforce Community file hosting.</p></div>
+      <div class="callout-icon">i</div>
+      <div class="callout-body"><p><strong>Adapting for other departments</strong> The SharePoint export method works for any team whose documents live in SharePoint. The help-centre scraper is specific to Access Group / Intercom - a different HRIS vendor will need different selectors. The guide PDF approach (Salesforce viewer + <code>expect_download()</code>) is general and will work for any Salesforce Community file hosting.</p></div>
     </div>
   </section>
 
-  <!-- ── AUTHENTICATION ── -->
+  <!-- -- AUTHENTICATION -- -->
   <section id="auth">
     <div class="section-eyebrow">Section 6</div>
     <h2 class="section-title">Authentication</h2>
 
     <h3>Access Group portal login</h3>
     <p>The scraper logs into <code>accessgroup.my.site.com/Support/s/login/</code> using credentials stored as GitHub Actions secrets (<code>ACCESS_USERNAME</code>, <code>ACCESS_PASSWORD</code>). The authenticated Playwright session is then used for all subsequent requests. Cookies carry across to the Salesforce CDN domain (<code>accessgroup.my.salesforce.com</code>), which is the same Salesforce org.</p>
-    <p>Without login (<code>--no-login</code> flag), the public help-centre articles are still accessible. Guide PDFs are not — Salesforce returns 200 OK with an HTML redirect page, not a PDF.</p>
+    <p>Without login (<code>--no-login</code> flag), the public help-centre articles are still accessible. Guide PDFs are not - Salesforce returns 200 OK with an HTML redirect page, not a PDF.</p>
 
     <h3>API secrets</h3>
     <div class="table-wrap">
@@ -708,15 +751,15 @@ hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
       </table>
     </div>
     <div class="callout warn">
-      <div class="callout-icon">⚠</div>
-      <div class="callout-body"><p><strong>No secrets in code or config files — ever.</strong> All credentials are stored in Cloudflare Worker secrets or GitHub Actions secrets. A secret committed to a public repo will be automatically revoked by GitHub within minutes, and the knowledge base will go dark.</p></div>
+      <div class="callout-icon">!</div>
+      <div class="callout-body"><p><strong>No secrets in code or config files - ever.</strong> All credentials are stored in Cloudflare Worker secrets or GitHub Actions secrets. A secret committed to a public repo will be automatically revoked by GitHub within minutes, and the knowledge base will go dark.</p></div>
     </div>
   </section>
 
-  <!-- ── BUILD GUIDE ── -->
+  <!-- -- BUILD GUIDE -- -->
   <section id="build-guide">
     <div class="section-eyebrow">Section 7</div>
-    <h2 class="section-title">Build Guide — Replication from Zero</h2>
+    <h2 class="section-title">Build Guide - Replication from Zero</h2>
     <p>This section documents how to stand up an identical system for a new department or organisation. Assume the new team uses the same HRIS (PeopleXD / Access Group) and has SharePoint documents. Variations are noted where relevant.</p>
 
     <h3>Prerequisites</h3>
@@ -724,14 +767,14 @@ hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
       <li>A GitHub account (free)</li>
       <li>A Cloudflare account (free tier sufficient)</li>
       <li>An Anthropic API key</li>
-      <li>An ElevenLabs API key (optional — for TTS/voice agent)</li>
+      <li>An ElevenLabs API key (optional - for TTS/voice agent)</li>
       <li>Access Group portal credentials (for guide PDF harvest)</li>
       <li>A GitHub Actions runner (self-hosted) that has outbound internet access to the Access Group portal and Salesforce CDN</li>
     </ul>
 
     <div class="callout info">
-      <div class="callout-icon">ℹ</div>
-      <div class="callout-body"><p><strong>Why self-hosted runner?</strong> The scraper runs Playwright (Chromium) against authenticated web sessions. GitHub-hosted runners are ephemeral and have no persistent session. A self-hosted runner persists, is on your own network, and can run jobs up to 300 minutes — necessary for a full corpus harvest.</p></div>
+      <div class="callout-icon">i</div>
+      <div class="callout-body"><p><strong>Why self-hosted runner?</strong> The scraper runs Playwright (Chromium) against authenticated web sessions. GitHub-hosted runners are ephemeral and have no persistent session. A self-hosted runner persists, is on your own network, and can run jobs up to 300 minutes - necessary for a full corpus harvest.</p></div>
     </div>
 
     <div class="steps">
@@ -739,7 +782,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
         <div class="step-num">1</div>
         <div class="step-content">
           <h4>Fork or clone the template repository</h4>
-          <p>Create a new repository from <code>begb0037admin/hr-fa-knowledge-base</code>. This contains the scraper, index builder, workflow, and front end. Remove or empty <code>data/kb.json</code>, <code>data/kb-index.json</code>, and <code>downloads/</code> — these are environment-specific and will be regenerated.</p>
+          <p>Create a new repository from <code>begb0037admin/hr-fa-knowledge-base</code>. This contains the scraper, index builder, workflow, and front end. Remove or empty <code>data/kb.json</code>, <code>data/kb-index.json</code>, and <code>downloads/</code> - these are environment-specific and will be regenerated.</p>
         </div>
       </div>
       <div class="step">
@@ -774,7 +817,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
         <div class="step-num">6</div>
         <div class="step-content">
           <h4>Deploy the Cloudflare Worker</h4>
-          <p>Create a new Worker in Cloudflare. Copy <code>worker/worker.js</code> into it. Add Worker secrets: <code>ANTHROPIC_API_KEY</code>, <code>ELEVENLABS_API_KEY</code>. Set the <code>ALLOWED_ORIGIN</code> environment variable to your GitHub Pages URL (e.g. <code>https://yourdomain.github.io/your-kb</code>). Note the Worker URL — you'll need it in the next step.</p>
+          <p>Create a new Worker in Cloudflare. Copy <code>worker/worker.js</code> into it. Add Worker secrets: <code>ANTHROPIC_API_KEY</code>, <code>ELEVENLABS_API_KEY</code>. Set the <code>ALLOWED_ORIGIN</code> environment variable to your GitHub Pages URL (e.g. <code>https://yourdomain.github.io/your-kb</code>). Note the Worker URL - you'll need it in the next step.</p>
         </div>
       </div>
       <div class="step">
@@ -788,14 +831,14 @@ hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
         <div class="step-num">8</div>
         <div class="step-content">
           <h4>Run a diagnostic scrape first</h4>
-          <p>Trigger <code>scrape-help-centres.yml</code> with <code>diagnostic=true</code> and <code>login=true</code>. This runs one guide per module, skips the index build, and uploads to a <code>downloads_diag/</code> artifact — it cannot touch any production data. Review the logs: look for <code>SF landed:</code> lines (confirm authentication worked) and <code>Download captured via:</code> lines (confirm the PDF download mechanism works). Only proceed to a full harvest once the diagnostic is clean.</p>
+          <p>Trigger <code>scrape-help-centres.yml</code> with <code>diagnostic=true</code> and <code>login=true</code>. This runs one guide per module, skips the index build, and uploads to a <code>downloads_diag/</code> artifact - it cannot touch any production data. Review the logs: look for <code>SF landed:</code> lines (confirm authentication worked) and <code>Download captured via:</code> lines (confirm the PDF download mechanism works). Only proceed to a full harvest once the diagnostic is clean.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num">9</div>
         <div class="step-content">
           <h4>Run the full harvest</h4>
-          <p>Trigger <code>scrape-help-centres.yml</code> with: <code>login=true</code>, <code>guides_only=true</code> (or <code>guides=true, deep=true</code> for the full corpus), <code>limit=0</code>, <code>diagnostic=false</code>. This will run for 20–60 minutes depending on corpus size. The workflow will automatically build the index and commit <code>data/kb.json</code> and <code>data/kb-index.json</code> to main.</p>
+          <p>Trigger <code>scrape-help-centres.yml</code> with: <code>login=true</code>, <code>guides_only=true</code> (or <code>guides=true, deep=true</code> for the full corpus), <code>limit=0</code>, <code>diagnostic=false</code>. This will run for 20-60 minutes depending on corpus size. The workflow will automatically build the index and commit <code>data/kb.json</code> and <code>data/kb-index.json</code> to main.</p>
         </div>
       </div>
       <div class="step">
@@ -808,7 +851,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
     </div>
   </section>
 
-  <!-- ── WORKFLOW CONFIG ── -->
+  <!-- -- WORKFLOW CONFIG -- -->
   <section id="workflow-config">
     <div class="section-eyebrow">Section 8</div>
     <h2 class="section-title">Workflow Configuration</h2>
@@ -824,7 +867,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
           <tr><td><code>guides_only</code></td><td>boolean</td><td>false</td><td>Skip the help-centre loop entirely and only harvest guide PDFs. Much faster (~20 min vs ~2 hr). Use when guide PDFs are the only thing that has changed.</td></tr>
           <tr><td><code>limit</code></td><td>string</td><td>"0"</td><td>Max articles per help centre. 0 = no limit. Use a small number (e.g. "3") for test runs.</td></tr>
           <tr><td><code>print_fallback</code></td><td>boolean</td><td>true</td><td>When an article has no downloadable PDF, render the page to PDF using Playwright's print function.</td></tr>
-          <tr><td><code>diagnostic</code></td><td>boolean</td><td>false</td><td><strong>Safe mode.</strong> Forces <code>--no-login --guides-only --limit 1 --output downloads_diag</code>. Skips index build and commit. Uploads only to <code>downloads_diag/</code>. Use this for any exploratory or debugging run — it physically cannot touch production data.</td></tr>
+          <tr><td><code>diagnostic</code></td><td>boolean</td><td>false</td><td><strong>Safe mode.</strong> Forces <code>--no-login --guides-only --limit 1 --output downloads_diag</code>. Skips index build and commit. Uploads only to <code>downloads_diag/</code>. Use this for any exploratory or debugging run - it physically cannot touch production data.</td></tr>
         </tbody>
       </table>
     </div>
@@ -835,48 +878,48 @@ hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
     </div>
   </section>
 
-  <!-- ── THE PDF JOURNEY ── -->
+  <!-- -- THE PDF JOURNEY -- -->
   <section id="journey">
     <div class="section-eyebrow">Section 9</div>
     <h2 class="section-title">The Guide PDF Journey</h2>
     <p>This section documents the complete history of attempts to harvest the PeopleXD guide PDFs. It is written in detail because the root cause was non-obvious and the failures produced misleading-looking success signals at multiple points.</p>
 
     <h3>The problem</h3>
-    <p>Access Group publishes detailed step-by-step user guides for each PeopleXD module. These are listed in "guide index" articles on the Intercom help centre, but the links in those articles do not point to Intercom — they point to <code>accessgroup.my.salesforce.com</code>. This distinction took months to identify clearly.</p>
+    <p>Access Group publishes detailed step-by-step user guides for each PeopleXD module. These are listed in "guide index" articles on the Intercom help centre, but the links in those articles do not point to Intercom - they point to <code>accessgroup.my.salesforce.com</code>. This distinction took months to identify clearly.</p>
 
-    <h3>Attempt 1 — Wrong CSS selector</h3>
+    <h3>Attempt 1 - Wrong CSS selector</h3>
     <p><em>29 June 2026</em></p>
-    <p>The scraper used <code>article table td:first-child a[href]</code> to find links in guide index articles. The assumption was that the guide links would be in a table, as they were in a different part of the portal. Intercom does not render tables — it renders lists. The selector found zero links. The scraper reported success (no errors) but downloaded nothing.</p>
+    <p>The scraper used <code>article table td:first-child a[href]</code> to find links in guide index articles. The assumption was that the guide links would be in a table, as they were in a different part of the portal. Intercom does not render tables - it renders lists. The selector found zero links. The scraper reported success (no errors) but downloaded nothing.</p>
     <div class="callout danger">
-      <div class="callout-icon">✗</div>
+      <div class="callout-icon">✕</div>
       <div class="callout-body"><p><strong>Lesson:</strong> A zero-result run that reports success is a silent failure. Always verify the count of downloaded files or manifest rows after any harvest, not just the workflow status.</p></div>
     </div>
 
-    <h3>Attempt 2 — Wrong URL filter</h3>
+    <h3>Attempt 2 - Wrong URL filter</h3>
     <p><em>29 June 2026</em></p>
-    <p>The selector was broadened to <code>article a[href]</code> — every link in the article body. This found links, but the filter then restricted to URLs containing <code>/articles/</code> in the path. The scraper found exactly 5 links per module — which seemed plausible. In reality, these 5 links were cross-references at the bottom of each guide index article pointing to the other guide index pages. The actual guide links pointed to Salesforce and were filtered out.</p>
+    <p>The selector was broadened to <code>article a[href]</code> - every link in the article body. This found links, but the filter then restricted to URLs containing <code>/articles/</code> in the path. The scraper found exactly 5 links per module - which seemed plausible. In reality, these 5 links were cross-references at the bottom of each guide index article pointing to the other guide index pages. The actual guide links pointed to Salesforce and were filtered out.</p>
     <div class="callout danger">
-      <div class="callout-icon">✗</div>
-      <div class="callout-body"><p><strong>Lesson:</strong> A plausible-looking result count is not a correct result. 5 links per module looked like "5 featured guides" — it was coincidental. Always inspect what the links actually are, not just how many there are.</p></div>
+      <div class="callout-icon">✕</div>
+      <div class="callout-body"><p><strong>Lesson:</strong> A plausible-looking result count is not a correct result. 5 links per module looked like "5 featured guides" - it was coincidental. Always inspect what the links actually are, not just how many there are.</p></div>
     </div>
 
     <h3>Root cause identified</h3>
     <p><em>6 July 2026</em></p>
     <p>A diagnostic run with detailed logging confirmed: <em>all</em> real guide links use the domain <code>accessgroup.my.salesforce.com</code> with paths like <code>/sfc/p/{orgId}/a/{docId}/{hash}</code>. There is no <code>/articles/</code> in the path, no <code>.pdf</code> in the URL, and the domain is not <code>theaccessgroup.com</code>. Every previous filter rejected them.</p>
 
-    <h3>Fix Part 1 — Domain filter</h3>
+    <h3>Fix Part 1 - Domain filter</h3>
     <p>The filter was updated to accept <code>accessgroup.my.salesforce.com</code> as a valid link domain, alongside <code>theaccessgroup.com</code> and its subdomains. A separate set of normalised index page URLs (<code>guide_index_url_set</code>) was used to exclude cross-reference links that happen to also be on Intercom. A second diagnostic confirmed 310 guide links found across 11 modules.</p>
 
-    <h3>Attempt 3 — Wrong download mechanism</h3>
+    <h3>Attempt 3 - Wrong download mechanism</h3>
     <p><em>Full harvest, July 2026</em></p>
-    <p>The domain filter was correct, but the download method was wrong. The scraper used <code>context.request.get(url)</code> — a direct HTTP request using the browser's session cookies. For Salesforce file viewer pages, this returns 200 OK with an HTML shell (the viewer UI), not the PDF file. The <code>%PDF</code> magic-byte check correctly detected this and rejected all downloads — resulting in 0 PDFs despite 310 links found.</p>
+    <p>The domain filter was correct, but the download method was wrong. The scraper used <code>context.request.get(url)</code> - a direct HTTP request using the browser's session cookies. For Salesforce file viewer pages, this returns 200 OK with an HTML shell (the viewer UI), not the PDF file. The <code>%PDF</code> magic-byte check correctly detected this and rejected all downloads - resulting in 0 PDFs despite 310 links found.</p>
     <div class="callout danger">
-      <div class="callout-icon">✗</div>
-      <div class="callout-body"><p><strong>Lesson:</strong> A 200 OK response is not a PDF. Salesforce file viewer URLs return the viewer HTML when fetched directly, even with valid authentication cookies. The <code>%PDF</code> magic-byte check is essential — without it, HTML pages would have been saved as PDFs and silently indexed as garbage.</p></div>
+      <div class="callout-icon">✕</div>
+      <div class="callout-body"><p><strong>Lesson:</strong> A 200 OK response is not a PDF. Salesforce file viewer URLs return the viewer HTML when fetched directly, even with valid authentication cookies. The <code>%PDF</code> magic-byte check is essential - without it, HTML pages would have been saved as PDFs and silently indexed as garbage.</p></div>
     </div>
 
-    <h3>Fix Part 2 — Browser page navigation + download interception</h3>
-    <p><em>7 July 2026 — PR #16</em></p>
+    <h3>Fix Part 2 - Browser page navigation + download interception</h3>
+    <p><em>7 July 2026 - PR #16</em></p>
     <p>The correct approach: navigate the browser to the Salesforce viewer URL (<code>page.goto(url)</code>), wait for the page to render, find the Download button (<code>button[title='Download']</code>), and intercept the browser-triggered download event using Playwright's <code>page.expect_download()</code>. This is how a human would download the file, and it is the only way that works.</p>
 
     <pre><code>with page.expect_download(timeout=30_000) as dl_info:
@@ -891,7 +934,7 @@ dl_info.value.save_as(str(dest))</code></pre>
     </div>
   </section>
 
-  <!-- ── PAIN POINTS ── -->
+  <!-- -- PAIN POINTS -- -->
   <section id="pain-points">
     <div class="section-eyebrow">Section 10</div>
     <h2 class="section-title">Pain Points &amp; Lessons Learned</h2>
@@ -915,8 +958,8 @@ dl_info.value.save_as(str(dest))</code></pre>
             <td><span class="badge badge-green">Fixed</span></td>
           </tr>
           <tr>
-            <td>5 links found per module — all wrong ones</td>
-            <td>Correct selector, wrong domain filter — Salesforce links excluded</td>
+            <td>5 links found per module - all wrong ones</td>
+            <td>Correct selector, wrong domain filter - Salesforce links excluded</td>
             <td>Accept <code>accessgroup.my.salesforce.com</code> explicitly; exclude index pages via normalised URL set</td>
             <td><span class="badge badge-green">Fixed</span></td>
           </tr>
@@ -929,7 +972,7 @@ dl_info.value.save_as(str(dest))</code></pre>
           <tr>
             <td>Manifest wiped to 0 rows by a guides-only run</td>
             <td><code>write_manifest()</code> overwrote the file with only the current session's rows</td>
-            <td>Guides-only runs should append, not overwrite, or write to a separate manifest. KB regressed from 2,303 to 2,208 — superseded by the guide harvest bringing it to 2,515.</td>
+            <td>Guides-only runs should append, not overwrite, or write to a separate manifest. KB regressed from 2,303 to 2,208 - superseded by the guide harvest bringing it to 2,515.</td>
             <td><span class="badge badge-amber">Known, superseded</span></td>
           </tr>
           <tr>
@@ -959,7 +1002,7 @@ dl_info.value.save_as(str(dest))</code></pre>
           <tr>
             <td>Cloudflare Worker PAT revoked by GitHub</td>
             <td>PAT committed to a public repo was detected and auto-revoked within minutes</td>
-            <td>PAT stored as a Cloudflare Worker secret. Worker proxies requests — PAT never touches the browser or the repo.</td>
+            <td>PAT stored as a Cloudflare Worker secret. Worker proxies requests - PAT never touches the browser or the repo.</td>
             <td><span class="badge badge-green">Fixed</span></td>
           </tr>
           <tr>
@@ -973,7 +1016,7 @@ dl_info.value.save_as(str(dest))</code></pre>
     </div>
   </section>
 
-  <!-- ── RULED OUT ── -->
+  <!-- -- RULED OUT -- -->
   <section id="ruled-out">
     <div class="section-eyebrow">Section 11</div>
     <h2 class="section-title">What Was Ruled Out</h2>
@@ -985,7 +1028,7 @@ dl_info.value.save_as(str(dest))</code></pre>
         <tbody>
           <tr>
             <td><strong>Microsoft Graph API</strong></td>
-            <td>Oxford IT policy blocks the AADSTS admin consent flow required for any Graph API app registration. All attempts — including PowerShell SDK — failed with the same AADSTS errors. This is an IT governance decision, not a technical limitation that can be worked around.</td>
+            <td>Oxford IT policy blocks the AADSTS admin consent flow required for any Graph API app registration. All attempts - including PowerShell SDK - failed with the same AADSTS errors. This is an IT governance decision, not a technical limitation that can be worked around.</td>
           </tr>
           <tr>
             <td><strong>Chrome/browser extension for email access</strong></td>
@@ -1001,14 +1044,14 @@ dl_info.value.save_as(str(dest))</code></pre>
           </tr>
           <tr>
             <td><strong>Vector/semantic search instead of BM25</strong></td>
-            <td>Would require a server-side embedding store and API calls for every search — adding cost, latency, and infrastructure dependency. BM25 runs client-side with no cost and is fast enough for 2,500 documents. The retrieved context is passed to Claude for semantic understanding, so the retrieval step doesn't need to be semantic.</td>
+            <td>Would require a server-side embedding store and API calls for every search - adding cost, latency, and infrastructure dependency. BM25 runs client-side with no cost and is fast enough for 2,500 documents. The retrieved context is passed to Claude for semantic understanding, so the retrieval step doesn't need to be semantic.</td>
           </tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <!-- ── MAINTENANCE ── -->
+  <!-- -- MAINTENANCE -- -->
   <section id="maintenance">
     <div class="section-eyebrow">Section 12</div>
     <h2 class="section-title">Maintenance</h2>
@@ -1054,19 +1097,19 @@ dl_info.value.save_as(str(dest))</code></pre>
 
     <h3>Diagnosing a failed harvest</h3>
     <ol>
-      <li>Check the workflow run logs in GitHub Actions — look for lines starting with <code>Failed:</code> or <code>Error:</code> in the scraper output, and download the artifact (includes <code>errors.log</code>).</li>
-      <li>If 0 guide PDFs downloaded despite links found, check the <code>SF landed:</code> log lines — if it redirected to a login page, the Access Group session has expired or credentials are wrong.</li>
+      <li>Check the workflow run logs in GitHub Actions - look for lines starting with <code>Failed:</code> or <code>Error:</code> in the scraper output, and download the artifact (includes <code>errors.log</code>).</li>
+      <li>If 0 guide PDFs downloaded despite links found, check the <code>SF landed:</code> log lines - if it redirected to a login page, the Access Group session has expired or credentials are wrong.</li>
       <li>Run a diagnostic first: <code>diagnostic=true, login=true</code>. This is safe and gives fast feedback.</li>
-      <li>Check <code>data/kb.json</code> document count before and after any run. If it dropped, a manifest was likely overwritten — restore from the last known good git commit.</li>
+      <li>Check <code>data/kb.json</code> document count before and after any run. If it dropped, a manifest was likely overwritten - restore from the last known good git commit.</li>
     </ol>
 
     <div class="callout warn">
-      <div class="callout-icon">⚠</div>
+      <div class="callout-icon">!</div>
       <div class="callout-body"><p><strong>If the document count drops after a run:</strong> do not run again. Check the git log for the last known good state (<code>git log --oneline data/kb.json</code>), restore the manifest from that commit, rebuild the index. Running again risks compounding the data loss.</p></div>
     </div>
   </section>
 
-  <!-- ── EXPANSION ── -->
+  <!-- -- EXPANSION -- -->
   <section id="expansion">
     <div class="section-eyebrow">Section 13</div>
     <h2 class="section-title">Recommendations for Expansion</h2>
@@ -1076,26 +1119,26 @@ dl_info.value.save_as(str(dest))</code></pre>
 
     <p>Candidate additional sources:</p>
     <ul>
-      <li><strong>HR policy documents</strong> — if accessible as PDFs, drop them into a dedicated folder and add to the manifest</li>
-      <li><strong>Recorded meeting notes</strong> — Granola or similar meeting AI transcripts exported to markdown, processed through the same BM25 chunking pipeline</li>
-      <li><strong>Email threads</strong> — with appropriate anonymisation, common FAQ threads from IT support mailboxes</li>
-      <li><strong>Release notes</strong> — Access Group release note PDFs (already partially captured by the help-centre scraper's cross-module section)</li>
+      <li><strong>HR policy documents</strong> - if accessible as PDFs, drop them into a dedicated folder and add to the manifest</li>
+      <li><strong>Recorded meeting notes</strong> - Granola or similar meeting AI transcripts exported to markdown, processed through the same BM25 chunking pipeline</li>
+      <li><strong>Email threads</strong> - with appropriate anonymisation, common FAQ threads from IT support mailboxes</li>
+      <li><strong>Release notes</strong> - Access Group release note PDFs (already partially captured by the help-centre scraper's cross-module section)</li>
     </ul>
 
     <h3>Adapting for a different HRIS vendor</h3>
     <p>The BM25 retrieval layer, the Cloudflare Worker, and the front end are all vendor-agnostic. Only the scraper (<code>access_group_scraper.py</code>) is specific to Access Group / Intercom / Salesforce. For a different vendor:</p>
     <ul>
       <li>Identify the help documentation platform (Intercom, Zendesk, Confluence, custom)</li>
-      <li>Write a new scraper using the same Playwright skeleton — the <code>download_salesforce_via_page()</code> pattern is reusable for any Salesforce Community file hosting</li>
-      <li>Keep the same manifest format and index builder — the downstream pipeline is unchanged</li>
+      <li>Write a new scraper using the same Playwright skeleton - the <code>download_salesforce_via_page()</code> pattern is reusable for any Salesforce Community file hosting</li>
+      <li>Keep the same manifest format and index builder - the downstream pipeline is unchanged</li>
     </ul>
 
     <h3>Improving the retrieval layer</h3>
     <p>BM25 is excellent for known-terminology queries ("how do I configure pension by appointment"). It struggles with paraphrase or concept queries where the user's words do not match the document vocabulary. Options for improvement:</p>
     <ul>
-      <li><strong>Hybrid retrieval</strong> — BM25 for keyword match, plus a small embedding model (e.g. running in a Cloudflare Worker via AI Gateway) for semantic re-ranking</li>
-      <li><strong>Query expansion</strong> — send the user's query to Claude first to extract key terms and synonyms, then run BM25 on the expanded query</li>
-      <li><strong>Chunk size tuning</strong> — the current chunking strategy in <code>build_index.py</code> uses fixed-size chunks; document-aware chunking (splitting at section boundaries) would improve context quality</li>
+      <li><strong>Hybrid retrieval</strong> - BM25 for keyword match, plus a small embedding model (e.g. running in a Cloudflare Worker via AI Gateway) for semantic re-ranking</li>
+      <li><strong>Query expansion</strong> - send the user's query to Claude first to extract key terms and synonyms, then run BM25 on the expanded query</li>
+      <li><strong>Chunk size tuning</strong> - the current chunking strategy in <code>build_index.py</code> uses fixed-size chunks; document-aware chunking (splitting at section boundaries) would improve context quality</li>
     </ul>
 
     <h3>Session renewal automation</h3>
@@ -1109,15 +1152,15 @@ dl_info.value.save_as(str(dest))</code></pre>
       <li>Deploy a second Cloudflare Worker (or add a route to the existing one)</li>
       <li>Run the harvest</li>
     </ol>
-    <p>The front end (<code>index.html</code>) can be rebranded with minimal changes — the Oxford navy sidebar is a CSS variable (<code>--navy: #0C1733</code>) and the crest is an external image file. A new department can supply their own colours and logo.</p>
+    <p>The front end (<code>index.html</code>) can be rebranded with minimal changes - the Oxford navy sidebar is a CSS variable (<code>--navy: #002147</code>) and the crest is an external image file. A new department can supply their own colours and logo.</p>
 
     <div class="callout info">
-      <div class="callout-icon">ℹ</div>
-      <div class="callout-body"><p><strong>Cost at scale:</strong> The system as built has near-zero ongoing cost (GitHub Pages free, Cloudflare Workers free tier). Claude API costs arise only on queries — at typical usage volumes for a team of 10–50, this is a few pounds per month. The only fixed cost is the self-hosted runner machine (which likely already exists as an admin workstation).</p></div>
+      <div class="callout-icon">i</div>
+      <div class="callout-body"><p><strong>Cost at scale:</strong> The system as built has near-zero ongoing cost (GitHub Pages free, Cloudflare Workers free tier). Claude API costs arise only on queries - at typical usage volumes for a team of 10-50, this is a few pounds per month. The only fixed cost is the self-hosted runner machine (which likely already exists as an admin workstation).</p></div>
     </div>
   </section>
 
-  <!-- ── APPENDIX ── -->
+  <!-- -- APPENDIX -- -->
   <section id="appendix">
     <div class="section-eyebrow">Appendix</div>
     <h2 class="section-title">File Reference</h2>
@@ -1125,20 +1168,20 @@ dl_info.value.save_as(str(dest))</code></pre>
       <table>
         <thead><tr><th>File / folder</th><th>Purpose</th><th>Committed to repo?</th></tr></thead>
         <tbody>
-          <tr><td><code>scrapers/access_group_scraper.py</code></td><td>Main scraper — help centres + guide PDFs</td><td>Yes</td></tr>
-          <tr><td><code>scrapers/build_index.py</code></td><td>Index builder — merges all sources into kb.json</td><td>Yes</td></tr>
+          <tr><td><code>scrapers/access_group_scraper.py</code></td><td>Main scraper - help centres + guide PDFs</td><td>Yes</td></tr>
+          <tr><td><code>scrapers/build_index.py</code></td><td>Index builder - merges all sources into kb.json</td><td>Yes</td></tr>
           <tr><td><code>scrapers/extract_sharepoint.py</code></td><td>SharePoint zip extractor</td><td>Yes</td></tr>
           <tr><td><code>worker/worker.js</code></td><td>Cloudflare Worker source</td><td>Yes</td></tr>
           <tr><td><code>index.html</code></td><td>Single-file static SPA (the KB itself)</td><td>Yes</td></tr>
           <tr><td><code>.github/workflows/scrape-help-centres.yml</code></td><td>Main harvest workflow</td><td>Yes</td></tr>
-          <tr><td><code>data/kb.json</code></td><td>Knowledge base cards (2,515 docs)</td><td>Yes — generated</td></tr>
-          <tr><td><code>data/kb-index.json</code></td><td>BM25 index chunks</td><td>Yes — generated</td></tr>
-          <tr><td><code>downloads/</code></td><td>Downloaded PDFs by module</td><td>Yes — generated</td></tr>
-          <tr><td><code>downloads/manifest.csv</code></td><td>Record of all downloaded files — source of truth for index builder</td><td>Yes — generated</td></tr>
-          <tr><td><code>library/</code></td><td>SharePoint documents served by GitHub Pages</td><td>Yes — generated</td></tr>
-          <tr><td><code>images/oxford-crest.jpg</code></td><td>Sidebar crest — external file, never embed as base64</td><td>Yes</td></tr>
-          <tr><td><code>HANDOVER.md</code></td><td>Current state — always updated at end of session</td><td>Yes</td></tr>
-          <tr><td><code>CLAUDE.md</code></td><td>AI session bootstrap — constitution, architecture summary</td><td>Yes</td></tr>
+          <tr><td><code>data/kb.json</code></td><td>Knowledge base cards (2,515 docs)</td><td>Yes - generated</td></tr>
+          <tr><td><code>data/kb-index.json</code></td><td>BM25 index chunks</td><td>Yes - generated</td></tr>
+          <tr><td><code>downloads/</code></td><td>Downloaded PDFs by module</td><td>Yes - generated</td></tr>
+          <tr><td><code>downloads/manifest.csv</code></td><td>Record of all downloaded files - source of truth for index builder</td><td>Yes - generated</td></tr>
+          <tr><td><code>library/</code></td><td>SharePoint documents served by GitHub Pages</td><td>Yes - generated</td></tr>
+          <tr><td><code>images/oxford-crest.jpg</code></td><td>Sidebar crest - external file, never embed as base64</td><td>Yes</td></tr>
+          <tr><td><code>HANDOVER.md</code></td><td>Current state - always updated at end of session</td><td>Yes</td></tr>
+          <tr><td><code>CLAUDE.md</code></td><td>AI session bootstrap - constitution, architecture summary</td><td>Yes</td></tr>
         </tbody>
       </table>
     </div>
@@ -1150,11 +1193,11 @@ dl_info.value.save_as(str(dest))</code></pre>
       <table>
         <thead><tr><th>Commit</th><th>What it marks</th></tr></thead>
         <tbody>
-          <tr><td><code>2a574d8</code></td><td>Last good state before guide work — 944 manifest rows, 2,303 docs</td></tr>
-          <tr><td><code>b3dec6d</code></td><td>Guides-only run that wiped the manifest — 2,208 docs (regression)</td></tr>
-          <tr><td><code>d0eb790</code></td><td>PR #15 — Salesforce domain filter fix, diagnostic mode</td></tr>
-          <tr><td><code>5552a4a</code></td><td>PR #16 — <code>download_salesforce_via_page()</code> — the working download approach</td></tr>
-          <tr><td><code>263e33c</code></td><td>Full guide harvest committed — 2,515 docs</td></tr>
+          <tr><td><code>2a574d8</code></td><td>Last good state before guide work - 944 manifest rows, 2,303 docs</td></tr>
+          <tr><td><code>b3dec6d</code></td><td>Guides-only run that wiped the manifest - 2,208 docs (regression)</td></tr>
+          <tr><td><code>d0eb790</code></td><td>PR #15 - Salesforce domain filter fix, diagnostic mode</td></tr>
+          <tr><td><code>5552a4a</code></td><td>PR #16 - <code>download_salesforce_via_page()</code> - the working download approach</td></tr>
+          <tr><td><code>263e33c</code></td><td>Full guide harvest committed - 2,515 docs</td></tr>
         </tbody>
       </table>
     </div>
