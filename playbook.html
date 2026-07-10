@@ -625,6 +625,23 @@ hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
         </tbody>
       </table>
     </div>
+
+    <h3>AI card summarisation (two-level)</h3>
+    <p>Every card in the document library shows a short summary when collapsed and a longer, more detailed summary when expanded. Rather than truncating the full document text (which cuts off mid-sentence and reads as an arbitrary excerpt), a dedicated script calls Claude twice per document to generate two purpose-written summaries:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Field</th><th>Length</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><code>ss</code> (short summary)</td><td>3-4 sentences</td><td>Collapsed card preview - what the document covers, what task it helps with, when to open it. Written so a reader scanning the list can judge relevance without expanding.</td></tr>
+          <tr><td><code>sl</code> (long summary)</td><td>6-10 sentences</td><td>Expanded card detail - specific steps, menu paths, field names, error scenarios, and who uses the document. Grounded only in what the source text actually contains - never invents detail.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The original capped excerpt (field <code>s</code>) is never modified or removed - the two new fields sit alongside it, and the dashboard falls back to <code>s</code> for any document that hasn't been enhanced yet. This makes the rollout safe to run in batches over multiple sessions without ever leaving the site in a broken state.</p>
+    <div class="callout success">
+      <div class="callout-icon">✓</div>
+      <div class="callout-body"><p><strong>Rollout completed 10 July 2026.</strong> All 2,515 documents across all five sources (Change Management, How To Guides, Access Group PDF guides, Access Group web articles, Kevin's Guides) now have both fields. See <a href="#pain-points">Section 10</a> for two operational incidents encountered during the rollout and the lessons drawn from them.</p></div>
+    </div>
   </section>
 
   <!-- -- ARCHITECTURE -- -->
@@ -680,6 +697,8 @@ hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
           <tr><td><strong>AI proxy</strong></td><td><code>worker/worker.js</code></td><td>Cloudflare Worker. Holds API secrets server-side. Routes <code>/</code> to Claude (Anthropic API), <code>/tts</code> to ElevenLabs, <code>/stt</code> to Scribe v2.</td></tr>
           <tr><td><strong>Workflow</strong></td><td><code>.github/workflows/scrape-help-centres.yml</code></td><td>GitHub Actions. Triggers the scraper, runs the index builder, and commits the result. Diagnostic mode for safe testing without touching production data.</td></tr>
           <tr><td><strong>SharePoint extractor</strong></td><td><code>scrapers/extract_sharepoint.py</code></td><td>Unpacks SharePoint export zips into the <code>library/</code> folder for GitHub Pages hosting.</td></tr>
+          <tr><td><strong>Enhanced summariser</strong></td><td><code>scrapers/summarise_enhanced.py</code></td><td>Generates the two-level <code>ss</code>/<code>sl</code> card summaries described in <a href="#what-was-built">Section 2</a>. Filters by <code>--source</code> and optional <code>--type</code> (pdf/web), supports <code>--limit</code> for batching and <code>--dry-run</code> for review before writing. Never touches the original <code>s</code> field.</td></tr>
+          <tr><td><strong>Summarisation workflow</strong></td><td><code>.github/workflows/summarise-enhanced.yml</code></td><td>GitHub Actions, workflow_dispatch. Inputs: <code>source</code>, <code>type</code>, <code>limit</code>, <code>dry_run</code>, <code>force</code>. Commits <code>kb.json</code> only when <code>dry_run=false</code>.</td></tr>
         </tbody>
       </table>
     </div>
@@ -994,12 +1013,6 @@ dl_info.value.save_as(str(dest))</code></pre>
             <td><span class="badge badge-green">Fixed</span></td>
           </tr>
           <tr>
-            <td>Microsoft Graph API blocked by IT policy</td>
-            <td>Oxford MDM blocks AADSTS consent flow for Graph API across all app registration approaches</td>
-            <td>Do not attempt Graph API at Oxford. Use Outlook COM (local Windows script) for inbox access.</td>
-            <td><span class="badge badge-red">Ruled out</span></td>
-          </tr>
-          <tr>
             <td>Cloudflare Worker PAT revoked by GitHub</td>
             <td>PAT committed to a public repo was detected and auto-revoked within minutes</td>
             <td>PAT stored as a Cloudflare Worker secret. Worker proxies requests - PAT never touches the browser or the repo.</td>
@@ -1009,6 +1022,18 @@ dl_info.value.save_as(str(dest))</code></pre>
             <td>Salesforce returns 200 OK with HTML for unauthenticated PDF requests</td>
             <td>Salesforce Community requires active session; returns redirect page, not 403</td>
             <td><code>%PDF</code> magic-byte validation on every downloaded file; workflow requires <code>login=true</code> for guide harvests</td>
+            <td><span class="badge badge-green">Fixed</span></td>
+          </tr>
+          <tr>
+            <td>A second, duplicate workflow run silently fired for the same batch</td>
+            <td>A <code>workflow_dispatch</code> API call returned <code>500 Failed to run workflow dispatch</code>, which was treated as "did not queue" and retried - but the first call had actually queued successfully server-side despite the error response</td>
+            <td>Always check <code>list_workflow_runs</code> with <code>status: in_progress</code> for the workflow before dispatching again. Treat a 500 from the dispatch endpoint as ambiguous, not as confirmation of failure - the two runs processed the same documents independently; the first to finish pushed cleanly and the second correctly failed its own push with a git rebase conflict rather than corrupting data. No data was lost, but API calls (and cost) were wasted.</td>
+            <td><span class="badge badge-amber">Known, mitigated</span></td>
+          </tr>
+          <tr>
+            <td>Large batch summarisation run stopped partway with no data loss</td>
+            <td>Anthropic API credit balance ran out mid-batch (<code>"Your credit balance is too low to access the Anthropic API"</code>) - 282 of 500 documents in that batch succeeded before the remaining 218 began failing</td>
+            <td>The summariser only ever writes documents whose API call succeeded, so the failed 218 were simply left pending, not corrupted or half-written. After topping up credits, a small "canary" batch (e.g. 250 docs) confirmed billing was restored before resuming full-size batches. For any large paid-API batch job: top up credits proactively before a long unattended run, and re-run with the same source/limit inputs afterwards - the script skips documents already completed.</td>
             <td><span class="badge badge-green">Fixed</span></td>
           </tr>
         </tbody>
@@ -1090,6 +1115,11 @@ dl_info.value.save_as(str(dest))</code></pre>
             <td>Renew Cloudflare Worker PAT</td>
             <td>When PAT expires (if using one)</td>
             <td>Update <code>HRIS_GITHUB_PAT</code> secret in Cloudflare Worker</td>
+          </tr>
+          <tr>
+            <td>Generate <code>ss</code>/<code>sl</code> summaries for new documents</td>
+            <td>After any harvest that adds documents without an enhanced summary</td>
+            <td>Trigger <code>summarise-enhanced.yml</code> with the relevant <code>source</code> (and <code>type</code> for Access Group Help Centre). Dry-run a small sample first, review, then run live with <code>limit=0</code>. For large sources, batch with a fixed <code>limit</code> and re-run - already-completed documents are skipped automatically.</td>
           </tr>
         </tbody>
       </table>
@@ -1179,6 +1209,8 @@ dl_info.value.save_as(str(dest))</code></pre>
           <tr><td><code>downloads/</code></td><td>Downloaded PDFs by module</td><td>Yes - generated</td></tr>
           <tr><td><code>downloads/manifest.csv</code></td><td>Record of all downloaded files - source of truth for index builder</td><td>Yes - generated</td></tr>
           <tr><td><code>library/</code></td><td>SharePoint documents served by GitHub Pages</td><td>Yes - generated</td></tr>
+          <tr><td><code>scrapers/summarise_enhanced.py</code></td><td>Two-level (<code>ss</code>/<code>sl</code>) card summary generator - source/type filtered, dry-run capable</td><td>Yes</td></tr>
+          <tr><td><code>.github/workflows/summarise-enhanced.yml</code></td><td>Manual-dispatch workflow for the enhanced summariser</td><td>Yes</td></tr>
           <tr><td><code>images/oxford-crest.jpg</code></td><td>Sidebar crest - external file, never embed as base64</td><td>Yes</td></tr>
           <tr><td><code>HANDOVER.md</code></td><td>Current state - always updated at end of session</td><td>Yes</td></tr>
           <tr><td><code>CLAUDE.md</code></td><td>AI session bootstrap - constitution, architecture summary</td><td>Yes</td></tr>
@@ -1198,6 +1230,10 @@ dl_info.value.save_as(str(dest))</code></pre>
           <tr><td><code>d0eb790</code></td><td>PR #15 - Salesforce domain filter fix, diagnostic mode</td></tr>
           <tr><td><code>5552a4a</code></td><td>PR #16 - <code>download_salesforce_via_page()</code> - the working download approach</td></tr>
           <tr><td><code>263e33c</code></td><td>Full guide harvest committed - 2,515 docs</td></tr>
+          <tr><td><code>b1e203a</code></td><td>Phase 1 of enhanced summarisation: <code>summarise_enhanced.py</code> + workflow added</td></tr>
+          <tr><td><code>f279fc3</code></td><td>Dashboard cards switched to read <code>ss</code>/<code>sl</code> where present, falling back to <code>s</code></td></tr>
+          <tr><td><code>13b5ecb</code></td><td>Added <code>--type</code> filter to split Access Group Help Centre into PDF/web batches</td></tr>
+          <tr><td><code>b589e0b</code></td><td>Final batch (Kevin's Guides) - enhanced summarisation rollout reaches 2,515/2,515</td></tr>
         </tbody>
       </table>
     </div>
