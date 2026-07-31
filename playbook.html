@@ -1188,6 +1188,13 @@ dl_info.value.save_as(str(dest))</code></pre>
       <div class="callout-icon">i</div>
       <div class="callout-body"><p><strong>Cost at scale:</strong> The system as built has near-zero ongoing cost (GitHub Pages free, Cloudflare Workers free tier). Claude API costs arise only on queries - at typical usage volumes for a team of 10-50, this is a few pounds per month. The only fixed cost is the self-hosted runner machine (which likely already exists as an admin workstation).</p></div>
     </div>
+
+    <h3>Cority (Health &amp; Safety) - in progress</h3>
+    <p>Cority is the University's Occupational Health / H&amp;S management system - one of the first real tests of this pattern's "deploy for another department" claim. It turned out to have two independent content sources: a ClickHelp-hosted documentation portal requiring no login at all, and a Salesforce Experience Cloud community requiring the same email/password login pattern as Access Group. Both were confirmed technically viable through direct testing, including a genuine bulk-search API (Coveo) on the Salesforce side and a public sitemap on the ClickHelp side - in some respects an easier build than the original Access Group harvest, not harder.</p>
+    <div class="callout info">
+      <div class="callout-icon">i</div>
+      <div class="callout-body"><p><strong>Full findings:</strong> see <code>CORITY-FEASIBILITY.md</code> in <a href="https://github.com/begb0037admin/hr-fa-knowledge-base/blob/main/CORITY-FEASIBILITY.md" target="_blank" rel="noopener">begb0037admin/hr-fa-knowledge-base</a> for the complete technical record - endpoints, login flow, a Salesforce image-authentication trap worth knowing about before it's copied into any other vendor build, and the recommended architecture. Feasibility confirmed 31 July 2026; build not yet started.</p></div>
+    </div>
   </section>
 
   <!-- -- APPENDIX -- -->
