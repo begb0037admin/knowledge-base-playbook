@@ -12,6 +12,7 @@
 - **Last updated:** 2026-07-07
 
 ## Bootstrap Order
+0. **Accountable lead: Adam** (`agent-commons/AGENT_DIRECTORY.md`). Any local session working in this repo should dispatch to Adam immediately rather than operating as a generic session — Adam reads its own `AGENT.md`, `MEMORY.md`, and this file before doing anything.
 1. This file (orientation)
 2. `HANDOVER.md` (current state — read for any task)
 3. `playbook.html` — the playbook itself
